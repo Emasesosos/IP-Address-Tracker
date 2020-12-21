@@ -1,0 +1,14 @@
+.ipDetails__container {
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 15px;
+    height: 100px;
+    left: 50%;
+    position: absolute;
+    top: 100%;
+    transform: translate(-50%, -50%);
+    width: 750px;
+    h1 {
+        color: black;
+    }
+}
