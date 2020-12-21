@@ -1,3 +1,9 @@
+.ipAddressTracker__container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .hero__container {
     background-image: url('./../../assets/pattern-bg.png');
     background-position: center;

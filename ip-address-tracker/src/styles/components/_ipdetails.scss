@@ -1,14 +1,113 @@
 .ipDetails__container {
-    background-color: white;
-    border: 1px solid gray;
-    border-radius: 15px;
-    height: 100px;
+    align-items: center;
+    display: flex;
+    // flex: 1;
+    // height: 100%;
+    justify-content: center;
     left: 50%;
     position: absolute;
-    top: 100%;
+    top: 125%;
     transform: translate(-50%, -50%);
-    width: 750px;
+    width: 100%;
     h1 {
-        color: black;
+        color: black; 
     }
 }
+
+@media screen and (min-width: $tablet) {
+    .ipDetails__container {
+        top: 100%;
+    }
+}
+
+.ipDetails__details {
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 50px 50px -25px rgba(0, 0, 0, 0.0983665);
+    display: flex;
+    flex-direction: column;
+    height: 294px;
+    justify-content: space-between;
+    margin: 0 23px;
+    padding: 26px 24px 24px 24px;
+    position: relative;
+    width: 1100px;
+}
+
+@media screen and (min-width: $tablet) {
+    .ipDetails__details {
+        flex-direction: row;
+        height: 161px; 
+        padding: 37px 32px;
+    }
+}
+
+
+.ipDetails__detail {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px 0 22px 0;
+    p {
+        color: #2C2C2C;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: bold;
+        letter-spacing: 1.75px;
+        margin-bottom: 7px;
+        opacity: 0.5;
+        padding: 0;
+    }
+    span {
+        color: #2C2C2C;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        letter-spacing: -0.232143px;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: $tablet) {
+    .ipDetails__detail {
+        display: block;
+        height: 100%;
+        margin: 24px 0px;
+        width: 213px;
+        p {
+            font-size: 11px;
+            margin-bottom: 13px;
+        }
+        span {
+            font-size: 26px;
+        }
+    }
+}
+
+@media screen and (min-width: $desktop) {
+    .ipDetails__detail {
+        p {
+            font-size: 12px;
+        }
+    }
+}
+
+.ipDetails__address,
+.ipDetails__location, 
+.ipDetails__timezone {
+    border-right: none;
+}
+
+@media screen and (min-width: $tablet) {
+    .ipDetails__address,
+    .ipDetails__location, 
+    .ipDetails__timezone {
+        border-right: 1px solid rgba(0, 0, 0, .15);
+        height: 75px;
+    }
+}
+
+
