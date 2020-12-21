@@ -1,0 +1,45 @@
+.form__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+form {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.form__input-button-ipAddressTracker {
+    margin: 0 23px;
+    position: relative;
+    width: 555px;
+}
+
+input {
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    height: 63px;
+    outline: none;
+    padding-left: 23px;
+    width: 100%;
+}
+
+button {
+    background: black;
+    border: none;
+    border-radius: 0px 15px 15px 0px;
+    cursor: pointer;
+    height: 63px;
+    outline: none;
+    position: absolute;
+    right: 0px;
+    width: 58px;
+    &:active {
+        transform: scale(0.99);
+    }
+}
