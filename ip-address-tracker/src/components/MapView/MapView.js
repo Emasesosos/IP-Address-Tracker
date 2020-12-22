@@ -1,29 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Map, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Markers } from './Markers';
 
-export const MapView = () => {
+export const MapView = ({ places }) => {
 
-    // console.log(places);
+    const lat = places.geometry[0];
+    const lng = places.geometry[1];
 
-    const [state, setState] = useState({
+    const [state] = useState({
         currentLocation: {
-            lat: '52.52437',
-            lng: '13.41053'
+            lat,
+            lng
         },
         zoom: 16,
     });
-
-    // useEffect(() => {
-    //     setState({
-    //         ...state,
-    //         currentLocation: {
-    //             lat: places.geometry[0],
-    //             lnt: places.geometry[1],
-    //         }
-    //     })
-    // }, [state, places])
 
     return (
         <div className="mapView__container">
@@ -35,7 +26,7 @@ export const MapView = () => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"  
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
-                <Markers />
+                <Markers places={ places }/>
             </Map>
         </div>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import useForm from '../hooks/useForm';
 
-export const Form = () => {
+export const Form = ({ setParam }) => {
 
     const [ formValues, handleInputChange, reset ] = useForm({
         ipAddressTracker: '',
@@ -14,8 +14,7 @@ export const Form = () => {
         if(!ipAddressTracker) {
             return;
         }
-        console.log('ipAddressTracker: ', ipAddressTracker);
-        // setSearch(sLocation);
+        setParam(ipAddressTracker);
         reset();
     };
 

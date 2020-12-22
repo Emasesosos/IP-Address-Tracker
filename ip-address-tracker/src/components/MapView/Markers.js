@@ -3,14 +3,11 @@ import { Marker } from 'react-leaflet';
 import { IconLocation } from './IconLocation';
 import { MarkerPopup } from './MarkerPopup';
 
-export const Markers = () => {
+export const Markers = ({ places }) => {
 
-    const places = [{
-        name: 'New',
-        geometry: ['52.52437','13.41053'],
-    }];
+    const ubicacion = [places];
 
-    const markers = places.map((place, i) => {
+    const markers = ubicacion.map((place, i) => {
         return <Marker
                     key={ i }
                     position={ place.geometry }
