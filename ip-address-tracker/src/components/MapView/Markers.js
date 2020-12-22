@@ -8,7 +8,7 @@ export const Markers = () => {
     const places = [{
         name: 'New',
         geometry: ['52.52437','13.41053'],
-    }]
+    }];
 
     const markers = places.map((place, i) => {
         return <Marker

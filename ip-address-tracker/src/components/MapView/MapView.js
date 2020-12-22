@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Map, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Markers } from './Markers';
 
 export const MapView = () => {
 
+    // console.log(places);
+
     const [state, setState] = useState({
         currentLocation: {
             lat: '52.52437',
             lng: '13.41053'
         },
-        zoom: 14,
+        zoom: 16,
     });
+
+    // useEffect(() => {
+    //     setState({
+    //         ...state,
+    //         currentLocation: {
+    //             lat: places.geometry[0],
+    //             lnt: places.geometry[1],
+    //         }
+    //     })
+    // }, [state, places])
 
     return (
         <div className="mapView__container">

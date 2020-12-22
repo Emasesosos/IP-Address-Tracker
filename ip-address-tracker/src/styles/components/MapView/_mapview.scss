@@ -1,17 +1,17 @@
 .leaflet-container {
-    height: 100vh;
-    width: 100vw;
-  }
-
-.mapView__container {
-    // background-color: cadetblue;
-    flex: 1;
-    // height: 800px;
+  height: 100vh;
+  width: 99.5vw;
 }
 
-// @media screen and(min-width: $tablet) {
-//     .mapView__container {
-//         flex: 1;
-//         height: 0;
-//     }
-// }
+@media screen and (min-width: $tablet) {
+  .leaflet-container {
+    width: 99.9vw;
+  }
+}
+
+.mapView__container {
+  flex: 1;
+  position: absolute;
+  top: 100%;
+  z-index: 2;
+}

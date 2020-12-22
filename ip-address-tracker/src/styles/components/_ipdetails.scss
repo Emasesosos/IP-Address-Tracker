@@ -1,14 +1,13 @@
 .ipDetails__container {
     align-items: center;
     display: flex;
-    // flex: 1;
-    // height: 100%;
     justify-content: center;
     left: 50%;
     position: absolute;
     top: 125%;
     transform: translate(-50%, -50%);
     width: 100%;
+    z-index: 3;
     h1 {
         color: black; 
     }
