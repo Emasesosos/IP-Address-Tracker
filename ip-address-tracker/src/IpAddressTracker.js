@@ -4,12 +4,9 @@ import { Hero } from './components/Hero';
 import { IpDetails } from './components/IpDetails';
 import { MapView } from './components/MapView/MapView';
 
-
 function IpAddressTracker() {
 
   const [param, setParam] = useState({});
-
-  console.log('param: ', param);
 
   const [ipDetails, setIpDetails] = useState({
     ip: '',
@@ -24,12 +21,9 @@ function IpAddressTracker() {
     geometry: []
   }]);
 
-  // const IP_URL = "https://geo.ipify.org/api/v1?apiKey=at_6nRUxOePCdHarhVSTlWYwheZAvdEb"; // j.emmanuel.martinez.e@hotmail.com
-  const IP_URL = "https://geo.ipify.org/api/v1?apiKey=at_Iqd4nOu5QxIbtuoqMn0py4KyGZmv6"; // jemes-back@hotmail.com
+  const IP_URL = "https://geo.ipify.org/api/v1?apiKey=at_MmWWTC0uzQ1BJWJfgtshFaaQsGj33";
 
   useEffect(() => {
-
-    console.log('useEffect');
 
     const cancelToken1 = axios.CancelToken.source();
     
@@ -38,13 +32,10 @@ function IpAddressTracker() {
       await axios.get(IP_URL, {
         cancelToken: cancelToken1.token
       }).then(res => {
-        const city = res.data.location.city;
-        const country = res.data.location.country;
-        const postalCode =  res.data.location.postalCode;
-        const location = city + ', ' + country + ' ' + postalCode;
+        const { city, country, postalCode } = res.data.location;
         setIpDetails({
           ip: res.data.ip,
-          location,
+          location: city + ', ' + country + ' ' + postalCode,
           timezone: res.data.location.timezone,
           isp: res.data.isp,
           loading: true
@@ -70,7 +61,7 @@ function IpAddressTracker() {
     
     const fetchData = async () => {
 
-      await axios.get(`${IP_URL}?domain=${param}`, {
+      await axios.get(`${IP_URL}&ipAddress=${param}&domain=${param}`, {
         cancelToken: cancelToken2.token
       }).then(res => {
         const city = res.data.location.city;

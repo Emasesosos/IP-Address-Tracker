@@ -3,21 +3,20 @@ import useForm from '../hooks/useForm';
 
 export const Form = ({ setParam }) => {
 
-    const [ formValues, handleInputChange, reset ] = useForm({
+    const [ formValues, handleInputChange ] = useForm({
         ipAddressTracker: '',
     });
+
     const { ipAddressTracker } = formValues;
 
     const handleSearch = (e) => {
         e.preventDefault();
-        console.log('formSearch');
         if(!ipAddressTracker) {
             return;
         }
         setParam(ipAddressTracker);
-        reset();
+        // reset();
     };
-
 
     return (
 
