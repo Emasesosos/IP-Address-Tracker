@@ -8,6 +8,8 @@ function IpAddressTracker() {
 
   const [param, setParam] = useState({});
 
+  const [peticionError, setPeticionError] = useState({});
+
   const [ipDetails, setIpDetails] = useState({
     ip: '',
     location: '',
@@ -26,9 +28,8 @@ function IpAddressTracker() {
   useEffect(() => {
 
     const cancelToken1 = axios.CancelToken.source();
-    
-    const fetchData = async () => {
 
+    const fetchData = async () => {
       await axios.get(IP_URL, {
         cancelToken: cancelToken1.token
       }).then(res => {
@@ -49,28 +50,33 @@ function IpAddressTracker() {
         console.log(e);
       });
     };
+
     fetchData();
+
     return () => {
         cancelToken1.cancel();
     };
+
   }, []);
 
   useEffect(() => {
 
-    const cancelToken2 = axios.CancelToken.source();
-    
-    const fetchData = async () => {
+    if(Object.keys(param).length === 0) return null;
 
+    setIpDetails({
+      loading: false
+    });
+
+    const cancelToken2 = axios.CancelToken.source();
+
+    const fetchData = async () => {
       await axios.get(`${IP_URL}&ipAddress=${param}&domain=${param}`, {
         cancelToken: cancelToken2.token
       }).then(res => {
-        const city = res.data.location.city;
-        const country = res.data.location.country;
-        const postalCode =  res.data.location.postalCode;
-        const location = city + ', ' + country + ' ' + postalCode;
+        const { city, country, postalCode } = res.data.location;
         setIpDetails({
           ip: res.data.ip,
-          location,
+          location: city + ', ' + country + ' ' + postalCode,
           timezone: res.data.location.timezone,
           isp: res.data.isp,
           loading: true
@@ -79,15 +85,29 @@ function IpAddressTracker() {
           name: city,
           geometry: [res.data.location.lat, res.data.location.lng]
         });
+        setPeticionError({
+          error: false
+        });
       }).catch(e => {
         if (axios.isCancel(e)) return;
-        console.log(e);
+        const { code, messages } = e.response.data;
+        setIpDetails({
+          loading: true
+        });
+        setPeticionError({
+          error: true,
+          code,
+          messages
+        });
       });
     };
+
     fetchData();
+
     return () => {
         cancelToken2.cancel();
     };
+
   }, [param]);
 
   if(!places.geometry) return null;
@@ -95,10 +115,14 @@ function IpAddressTracker() {
   return (
     <div className="ipAddressTracker__container">
       <Hero setParam={ setParam }/>
-      <IpDetails ipDetails={ ipDetails }/> 
+      <IpDetails 
+        ipDetails={ ipDetails } 
+        peticionError={ peticionError }
+      />
       <MapView places={ places }/>
     </div>
   );
+
 }
 
 export default IpAddressTracker;
